@@ -1,14 +1,18 @@
-FROM node:14.8.0-alpine as builder
+FROM node:14.8.0-alpine
 
-WORKDIR /client
+WORKDIR /server
 
-ENV PATH /client/node_modules/.bin:$PATH
-COPY package.json /client/package.json
+COPY ./package.json ./
+
+RUN apk update && apk upgrade && \
+   apk add --no-cache bash git openssh
 
 RUN npm install
-RUN npm install react-scripts -g
 
 COPY . .
-RUN npm run build
+
+ENV NODE_ENV=production
+
+EXPOSE 8080
 
 CMD ["npm", "run", "server"]

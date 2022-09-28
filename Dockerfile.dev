@@ -1,12 +1,6 @@
 FROM node:14.8.0-alpine
-
-WORKDIR /client
-
+WORKDIR /server
 COPY ./package.json ./
-
 RUN npm install
-
 COPY . .
-
 CMD ["npm", "start"]
-

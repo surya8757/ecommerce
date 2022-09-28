@@ -1,6 +1,6 @@
-#! /bin/bash -x
+  #! /bin/bash -x
 
-echo "Deploying orezime/server to google cloud \n"
+echo "Deploying eShop/server to google cloud \n"
 
 # Returns a list of all gcloud deployment versions
 gcloud_list() {

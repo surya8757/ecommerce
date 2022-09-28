@@ -1,20 +1,13 @@
 version: "3"
 services:
   server:
-    image: orezimeteaching/server
-    ports:
-      - "5000:5000"
-    environment:
-      - MONGO_URI=${MONGO_URI}
-  client:
     build:
       dockerfile: Dockerfile.dev
       context: ./
-    depends_on:
-      - server
     volumes:
-      - ./node_modules:/client/node_modules
-      - ./:/client
-    stdin_open: true
+      - /server/node_modules
+      - ./:/server
+    environment:
+      - DB_PROD=${DB_PROD}
     ports:
-      - "3000:3000"
+      - "5000:5000"
